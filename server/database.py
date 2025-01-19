@@ -41,6 +41,7 @@ class Database:
                 image_path TEXT,
                 x_dimension INTEGER NOT NULL,
                 y_dimension INTEGER NOT NULL,
+                price INTEGER,
                 FOREIGN KEY(room) REFERENCES room(id)
                     ON UPDATE RESTRICT
                     ON DELETE RESTRICT,
@@ -67,10 +68,10 @@ class Database:
         self.cursor.execute("SELECT * FROM fournitures WHERE name=?", (name,))
         return self.cursor.fetchone()
 
-    def set_fourniture(self, name, room,type,color, x_dimension, y_dimension, path):
+    def set_fourniture(self, name, room,type,color, x_dimension, y_dimension, path,price):
         self.cursor.execute(
-            "INSERT INTO fournitures (name, room, type, color, x_dimension, y_dimension, image_path) VALUES (?, ?, ?, ?, ?, ?, ?)",
-            (name, room, type, color, x_dimension, y_dimension, path),
+            "INSERT INTO fournitures (name, room, type, color, x_dimension, y_dimension, image_path,price) VALUES (?, ?, ?,?, ?, ?, ?, ?)",
+            (name, room, type, color, x_dimension, y_dimension, path,price),
         )
         self.conn.commit()
         
@@ -188,9 +189,7 @@ class Database:
 
         
 
-        print(request, values)
         self.cursor.execute(request, values)
-        print(request, values)
         return self.cursor.fetchall()
                 
         

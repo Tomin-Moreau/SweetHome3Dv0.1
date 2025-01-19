@@ -241,7 +241,8 @@ def test_set_fourniture(server, client):
         "color": "Red",
         "x_dimension": 100,
         "y_dimension": 200,
-        "image_path": "path/to/image"
+        "image_path": "path/to/image",
+        "price" : 100,
     }
     response = client.send_request(request)
     assert response["MESSAGE"] == "Room not found"
@@ -298,7 +299,8 @@ def test_search_fourniture(server, client):
         "color": "Blue",
         "x_dimension": 100,
         "y_dimension": 200,
-        "image_path": "path/to/image"
+        "image_path": "path/to/image",
+        "price": 100
     })
     client.send_request({
         "command": "SET",
@@ -314,7 +316,8 @@ def test_search_fourniture(server, client):
         "color": "Blue",
         "x_dimension": 100,
         "y_dimension": 200,
-        "image_path": "path/to/image"
+        "image_path": "path/to/image",
+        "price": 100
     })
     
     
@@ -372,7 +375,8 @@ def test_get_fourniture(server, client):
         "color": "Blue",
         "x_dimension": 100,
         "y_dimension": 200,
-        "image_path": "None"
+        "image_path": "None",
+        "price": 100
     })
        
     search_result = client.send_request({
@@ -400,6 +404,7 @@ def test_get_fourniture(server, client):
         "color": "Blue",
         "x_dimension": 100,
         "y_dimension": 200,
+        "price": 100,
         "image_path": "images/test.jpg"
     })
     
@@ -472,7 +477,8 @@ def test_delete_fourniture(server, client):
         "color": "Blue",
         "x_dimension": 100,
         "y_dimension": 200,
-        "image_path": "path/to/image"
+        "image_path": "path/to/image",
+        "price": 100
     })
     
     search_result = client.send_request({

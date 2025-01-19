@@ -64,7 +64,7 @@ def test_color_table_columns(db):
 def test_fournitures_table_columns(db):
     db.cursor.execute("PRAGMA table_info(fournitures)")
     columns = [info[1] for info in db.cursor.fetchall()]
-    assert columns == ["id", "name", "room", "type", "color", "image_path", "x_dimension", "y_dimension"]
+    assert columns == ["id", "name", "room", "type", "color", "image_path", "x_dimension", "y_dimension","price"]
 
 def test_add_user(db):
     db.add_user("testuser", "password", False)
@@ -161,7 +161,7 @@ def test_set_fourniture(db):
     db.add_room("Living Room")
     db.add_type("Chair")
     db.add_color("Red")
-    db.set_fourniture("Chair1", 1, 1, 1, 100, 200, "path/to/image")
+    db.set_fourniture("Chair1", 1, 1, 1, 100, 200, "path/to/image",100)
     db.cursor.execute("SELECT * FROM fournitures WHERE name='Chair1'")
     fourniture = db.cursor.fetchone()
     assert fourniture is not None
@@ -171,7 +171,7 @@ def test_get_fourniture(db):
     db.add_room("Living Room")
     db.add_type("Chair")
     db.add_color("Red")
-    db.set_fourniture("Chair1", 1, 1, 1, 100, 200, "path/to/image")
+    db.set_fourniture("Chair1", 1, 1, 1, 100, 200, "path/to/image",100)
     fourniture = db.get_fourniture(1)
     assert fourniture is not None
     assert fourniture[1] == "Chair1"
@@ -180,7 +180,7 @@ def test_get_fourniture_by_name(db):
     db.add_room("Living Room")
     db.add_type("Chair")
     db.add_color("Red")
-    db.set_fourniture("Chair1", 1, 1, 1, 100, 200, "path/to/image")
+    db.set_fourniture("Chair1", 1, 1, 1, 100, 200, "path/to/image",100)
     fourniture = db.get_fourniture_by_name("Chair1")
     assert fourniture is not None
     assert fourniture[1] == "Chair1"
@@ -189,7 +189,7 @@ def test_delete_fourniture(db):
     db.add_room("Living Room")
     db.add_type("Chair")
     db.add_color("Red")
-    db.set_fourniture("Chair1", 1, 1, 1, 100, 200, "path/to/image")
+    db.set_fourniture("Chair1", 1, 1, 1, 100, 200, "path/to/image",100)
     db.delete_fourniture(1)
     db.cursor.execute("SELECT * FROM fournitures WHERE name='Chair1'")
     fourniture = db.cursor.fetchone()
@@ -207,7 +207,7 @@ def test_search(db):
     db.add_room("Living Room")
     db.add_type("Chair")
     db.add_color("Red")
-    db.set_fourniture("Chair1", 1, 1, 1, 100, 200, "path/to/image")
+    db.set_fourniture("Chair1", 1, 1, 1, 100, 200, "path/to/image",100)
     filter_value = {"type": "Chair", "room": "Living Room", "color": "Red","name":"Chair1"}
     filter_type = {"type": True, "room": True, "color": True,"name":True}
     results = db.search(filter_value, filter_type)

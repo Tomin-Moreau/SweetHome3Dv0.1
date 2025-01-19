@@ -61,16 +61,17 @@ class Server:
                     elif command == "GET":
                         self.database_thread.request_queue.put(("GET", data))
                         response = self.database_thread.response_queue.get()
-                        if response.get("image_path") is not None:
-                                    image_path = response["image_path"]
-                                    #ensure image exists
-                                    if os.path.exists(os.path.abspath(image_path)):
-                                        self.image_to_send = (True, image_path)
-                                        response["image_weight"] = os.path.getsize(image_path)
-                                    else:
-                                        response["image_path"] = None
-                                        response["image_weight"] = None
-                                        response["MESSAGE"] = "Image not found"
+                        if (data["table"] == "fournitures"):
+                            if response.get("image_path") is not None:
+                                        image_path = response["image_path"]
+                                        #ensure image exists
+                                        if os.path.exists(os.path.abspath(image_path)):
+                                            self.image_to_send = (True, image_path)
+                                            response["image_weight"] = os.path.getsize(image_path)
+                                        else:
+                                            response["image_path"] = None
+                                            response["image_weight"] = None
+                                            response["MESSAGE"] = "Image not found"
 
                     elif command == "SEARCH":
                         response = search_engine.search(data.get("query", ""))

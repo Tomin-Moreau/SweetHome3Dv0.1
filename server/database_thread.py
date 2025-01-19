@@ -88,7 +88,7 @@ class DatabaseThread(threading.Thread):
             # if name_already_exists:
             #     return {"MESSAGE": "Fourniture name already exists"}
             else:
-                self.database.set_fourniture(data["name"], room_id[0], type_id[0], color_id[0], data["x_dimension"], data["y_dimension"], data["image_path"])
+                self.database.set_fourniture(data["name"], room_id[0], type_id[0], color_id[0], data["x_dimension"], data["y_dimension"], data["image_path"],data["price"])
                 return {"MESSAGE": "Fourniture set successfully","id": self.database.get_fourniture_by_name(data["name"])[0]}
             
         elif table == "rooms":
@@ -196,6 +196,7 @@ class DatabaseThread(threading.Thread):
                     response = {"name": room[1]}
             else:
                 rooms = self.database.get_rooms()
+                print(rooms)
                 response = [{"id": room[0], "name": room[1]} for room in rooms]
                 
         if table == "types":
