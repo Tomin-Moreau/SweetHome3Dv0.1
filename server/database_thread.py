@@ -180,6 +180,7 @@ class DatabaseThread(threading.Thread):
                     "x_dimension": fourniture[6],
                     "y_dimension": fourniture[7],
                     "image_path": fourniture[5],
+                    "price": fourniture[8]
                 }
                     
              
@@ -196,6 +197,7 @@ class DatabaseThread(threading.Thread):
                     "x_dimension": fourniture[6],
                     "y_dimension": fourniture[7],
                     "image_path": None,
+                    "price": fourniture[8]
                 }
                 
 

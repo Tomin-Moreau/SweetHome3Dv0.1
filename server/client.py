@@ -221,10 +221,10 @@ class CLI(cmd.Cmd):
         print("Image sent successfully")
 
     def do_get_room(self, arg):
-        "Get room details: get_room [name]"
+        "Get room details: get_room [id]"
         args = arg.split()
         if len(args) > 1:
-            print("Usage: get_room [name]")
+            print("Usage: get_room [id]")
             return
         request = {"command": "GET", "table": "rooms"}
         if len(args) == 1:
@@ -233,10 +233,10 @@ class CLI(cmd.Cmd):
         print(response)
 
     def do_get_type(self, arg):
-        "Get type details: get_type [name]"
+        "Get type details: get_type [id]"
         args = arg.split()
         if len(args) > 1:
-            print("Usage: get_type [name]")
+            print("Usage: get_type [id]")
             return
         request = {"command": "GET", "table": "types"}
         if len(args) == 1:
@@ -245,10 +245,10 @@ class CLI(cmd.Cmd):
         print(response)
 
     def do_get_color(self, arg):
-        "Get color details: get_color [name]"
+        "Get color details: get_color [id]"
         args = arg.split()
         if len(args) > 1:
-            print("Usage: get_color [name]")
+            print("Usage: get_color [id]")
             return
         request = {"command": "GET", "table": "colors"}
         if len(args) == 1:
