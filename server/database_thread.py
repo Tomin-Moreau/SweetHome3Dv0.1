@@ -60,9 +60,9 @@ class DatabaseThread(threading.Thread):
                     "room": result[2],
                     "type": result[3],
                     "color": result[4],
-                    "x_dimension": result[5],
-                    "y_dimension": result[6],
-                    "image_path": result[7],
+                    "x_dimension": result[6],
+                    "y_dimension": result[7],
+                    "image_path": result[5],
                 }
                 results_dict.append(fourniture)
    
