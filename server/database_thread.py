@@ -63,6 +63,7 @@ class DatabaseThread(threading.Thread):
                     "x_dimension": result[6],
                     "y_dimension": result[7],
                     "image_path": result[5],
+                    "price": result[8]
                 }
                 results_dict.append(fourniture)
    

@@ -44,7 +44,6 @@ class Server:
                     if command == "AUTHENTICATE":
                         username = data.get("username")
                         password = data.get("password")
-                        print("Here")
                         identity.authenticate(username, password)
                         response = (
                             {"MESSAGE": "Authentication successful"}
