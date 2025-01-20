@@ -155,6 +155,20 @@ class Database:
         self.cursor.execute("SELECT * FROM colors WHERE name=?", (name,))
         return self.cursor.fetchone()
     
+    def get_type_by_id(self, id):
+        self.cursor.execute("SELECT * FROM types WHERE id=?", (id,))
+        return self.cursor.fetchone()
+    
+    def get_room_by_id(self, id):
+        self.cursor.execute("SELECT * FROM rooms WHERE id=?", (id,))
+        return self.cursor.fetchone()
+    
+    def get_color_by_id(self, id):
+        self.cursor.execute("SELECT * FROM colors WHERE id=?", (id,))
+        return self.cursor.fetchone()
+    
+    
+    
     
 
     def is_admin(self, username):

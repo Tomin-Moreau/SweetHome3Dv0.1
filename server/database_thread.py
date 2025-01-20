@@ -52,14 +52,18 @@ class DatabaseThread(threading.Thread):
         if filters:
             
             results_list = self.database.search(filters, filter_on)
+            print(results_list)
             results_dict = []
             for result in results_list:
+                color = self.database.get_color_by_id(result[4])
+                type = self.database.get_type_by_id(result[3])
+                room = self.database.get_room_by_id(result[2])
                 fourniture = {
                     "id": result[0],
                     "name": result[1],
-                    "room": result[2],
-                    "type": result[3],
-                    "color": result[4],
+                    "room": room[1],
+                    "type": type[1],
+                    "color": color[1],
                     "x_dimension": result[6],
                     "y_dimension": result[7],
                     "image_path": result[5],
