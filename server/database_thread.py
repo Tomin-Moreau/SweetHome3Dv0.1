@@ -200,8 +200,8 @@ class DatabaseThread(threading.Thread):
                 
 
         if table == "rooms":
-            if data.get("name"):
-                room = self.database.get_room_by_name(data["name"])
+            if data.get("id"):
+                room = self.database.get_room_by_id(data["id"])
                 if room:
                     response = {"name": room[1]}
             else:
@@ -210,8 +210,8 @@ class DatabaseThread(threading.Thread):
                 response = [{"id": room[0], "name": room[1]} for room in rooms]
                 
         if table == "types":
-            if data.get("name"):
-                type = self.database.get_type_by_name(data["name"])
+            if data.get("id"):
+                type = self.database.get_type_by_id(data["id"])
                 if type:
                     response = {"name": type[1]}
             else:
@@ -219,8 +219,8 @@ class DatabaseThread(threading.Thread):
                 response = [{"id": type[0], "name": type[1]} for type in types]
                 
         if table == "colors":
-            if data.get("name"):
-                color = self.database.get_color_by_name(data["name"])
+            if data.get("id"):
+                color = self.database.get_color_by_id(data["id"])
                 if color:
                     response = {"name": color[1]}
             else:

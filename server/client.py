@@ -228,7 +228,7 @@ class CLI(cmd.Cmd):
             return
         request = {"command": "GET", "table": "rooms"}
         if len(args) == 1:
-            request["name"] = args[0]
+            request["id"] = args[0]
         response = self.client.send_request(request)
         print(response)
 
@@ -240,7 +240,7 @@ class CLI(cmd.Cmd):
             return
         request = {"command": "GET", "table": "types"}
         if len(args) == 1:
-            request["name"] = args[0]
+            request["id"] = args[0]
         response = self.client.send_request(request)
         print(response)
 
@@ -252,7 +252,7 @@ class CLI(cmd.Cmd):
             return
         request = {"command": "GET", "table": "colors"}
         if len(args) == 1:
-            request["name"] = args[0]
+            request["id"] = args[0]
         response = self.client.send_request(request)
         print(response)
 
