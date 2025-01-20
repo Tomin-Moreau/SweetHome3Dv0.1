@@ -168,13 +168,15 @@ class DatabaseThread(threading.Thread):
         if table == "fournitures":
             fourniture = self.database.get_fourniture(data["id"])
             if fourniture[5] !="None":
-                
+                room = self.database.get_room_by_id(fourniture[2])
+                type = self.database.get_type_by_id(fourniture[3])
+                color = self.database.get_color_by_id(fourniture[4])
                 response = {
                     "id": fourniture[0],
                     "name": fourniture[1],
-                    "room": fourniture[2],
-                    "type": fourniture[3],
-                    "color": fourniture[4],
+                    "room": room[1],
+                    "type":  type[1],
+                    "color": color[1],
                     "x_dimension": fourniture[6],
                     "y_dimension": fourniture[7],
                     "image_path": fourniture[5],
@@ -182,12 +184,15 @@ class DatabaseThread(threading.Thread):
                     
              
             else:
+                room = self.database.get_room_by_id(fourniture[2])
+                type = self.database.get_type_by_id(fourniture[3])
+                color = self.database.get_color_by_id(fourniture[4])
                 response = {
                     "id": fourniture[0],
                     "name": fourniture[1],
-                    "room": fourniture[2],
-                    "type": fourniture[3],
-                    "color": fourniture[4],
+                    "room": room[1],
+                    "type": type[1],
+                    "color": color[1],
                     "x_dimension": fourniture[6],
                     "y_dimension": fourniture[7],
                     "image_path": None,
