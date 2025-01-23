@@ -139,6 +139,10 @@ class Database:
         self.cursor.execute("SELECT * FROM colors")
         return self.cursor.fetchall()
     
+    def get_users(self):
+        self.cursor.execute("SELECT * FROM users")
+        return self.cursor.fetchall()
+    
     def get_user_by_name(self, username):
         self.cursor.execute("SELECT * FROM users WHERE username=?", (username,))
         return self.cursor.fetchone()
@@ -166,6 +170,12 @@ class Database:
     def get_color_by_id(self, id):
         self.cursor.execute("SELECT * FROM colors WHERE id=?", (id,))
         return self.cursor.fetchone()
+    
+    def get_user_by_name(self, name):
+        self.cursor.execute("SELECT * FROM users WHERE username=?", (name,))
+        return self.cursor.fetchone()
+    
+    
     
     
     

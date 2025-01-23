@@ -1,5 +1,7 @@
 import threading
 import queue
+import hashlib
+
 from .database import Database
 import os
 class DatabaseThread(threading.Thread):
@@ -228,6 +230,15 @@ class DatabaseThread(threading.Thread):
             else:
                 colors = self.database.get_colors()
                 response = [{"id": color[0], "name": color[1]} for color in colors]
+        
+        if table == "users":
+            if data.get("username"):
+                user = self.database.get_user_by_id(data["username"])
+                if user:
+                    response = {"username": user[1], "is_admin": user[3]}
+            else:
+                users = self.database.get_users()
+                response = [{"id": user[0], "username": user[1],"password": user[2], "is_admin": user[3]} for user in users]
                 
         return response
 

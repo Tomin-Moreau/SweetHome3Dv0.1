@@ -57,7 +57,7 @@ class Server:
                         response = {"MESSAGE": "Disconnected"}
 
                     # Commands without authentication and admin
-                    elif command == "GET":
+                    elif command == "GET" and data.get("table") != "users":
                         self.database_thread.request_queue.put(("GET", data))
                         response = self.database_thread.response_queue.get()
                         if (data["table"] == "fournitures"):
@@ -109,6 +109,11 @@ class Server:
                                 response = self.receive_image(
                                     client_socket, image_path, image_weight
                                 )
+                            
+                            elif command == "GET":
+                                self.database_thread.request_queue.put(("GET", data))
+                                response = self.database_thread.response_queue.get()
+                                
                                 
                                 
                             else:

@@ -14,7 +14,6 @@ class Client:
         print(f"Sending request: {request}")
         self.client_socket.send(json.dumps(request).encode('utf-8'))
         response = self.client_socket.recv(4096).decode('utf-8')
-        print(response)
         return json.loads(response)
     
     def recv_image(self, image_weight):
@@ -251,6 +250,18 @@ class CLI(cmd.Cmd):
             print("Usage: get_color [id]")
             return
         request = {"command": "GET", "table": "colors"}
+        if len(args) == 1:
+            request["id"] = args[0]
+        response = self.client.send_request(request)
+        print(response)
+    
+    def do_get_user(self, arg):
+        "Get user details: get_user [username]"
+        args = arg.split()
+        if len(args) > 1:
+            print("Usage: get_user [username]")
+            return
+        request = {"command": "GET", "table": "users"}
         if len(args) == 1:
             request["id"] = args[0]
         response = self.client.send_request(request)
